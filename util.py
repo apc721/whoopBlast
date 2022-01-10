@@ -1,7 +1,6 @@
 import csv
 import datetime
 
-import plot
 from config import SWING_PATH
 from date import Date
 
@@ -23,7 +22,4 @@ def read_swings(path=SWING_PATH):
                         break
                 if not date_found:
                     list_of_dates.append(Date(datetime.datetime.strptime(row.get("Date"), "%b %d, %Y %H:%M:%S %p").strftime("%Y-%m-%d")))
-
-
-def call_plot():
-    plot.main(list_of_dates)
+    return list_of_dates

@@ -11,16 +11,47 @@ swing_vars = [swing_var0, swing_var1, swing_var2, swing_var3, swing_var4]
 health_var_names, swing_var_names = [], []
 
 
+def input_health_var_num():
+    num_of_health_vars = int(input("How many health metrics would you like to graph? "))  # Must be ≤ 5
+    while num_of_health_vars > 5:
+        print("The maximum number of health metrics is 5!")
+        num_of_health_vars = int(input("How many health metrics would you like to graph? "))
+    return num_of_health_vars
+
+
 def input_health_metrics(num_of_health_vars):
     for i in range(num_of_health_vars):
-        health_var_name = str(input("Enter a health metric: "))
-        health_var_names.append(health_var_name)
+        var_name = str(input("Enter a health metric: "))
+        health_var_names.append(var_name)
+
+
+def input_swing_var_num():
+    num_of_swing_vars = int(input("How many swing metrics would you like to graph? "))
+    while num_of_swing_vars > 5:
+        print("The maximum number of swing metrics is 5!")
+        num_of_swing_vars = int(input("How many swing metrics would you like to graph? "))
+    return num_of_swing_vars
 
 
 def input_swing_metrics(num_of_swing_vars):
     for i in range(num_of_swing_vars):
-        swing_var_name = input("Enter a swing metric: ")
-        swing_var_names.append(swing_var_name)
+        var_name = input("Enter a swing metric: ")
+        swing_var_names.append(var_name)
+
+
+def load_vars(list_of_dates, num_of_health_vars, num_of_swing_vars):
+    for date in list_of_dates:
+        dates.append(date.date)
+        for i in range(num_of_health_vars):
+            try:
+                health_vars[i].append(float(date.health_data.get(health_var_names[i])))
+            except AttributeError:  # Data value does not exist
+                health_vars[i].append(0.0)
+        for i in range(num_of_swing_vars):
+            if swing_var_names[i] == "Average Bat Speed":
+                swing_vars[i].append(date.avgBatSpeed())
+            elif swing_var_names[i] == "Maximum Bat Speed":
+                swing_vars[i].append(date.maxBatSpeed())
 
 
 def generate_graph(num_of_health_vars, num_of_swing_vars):
@@ -79,32 +110,11 @@ def generate_graph(num_of_health_vars, num_of_swing_vars):
     plt.show()
 
 
-def load_vars(list_of_dates, num_of_health_vars, num_of_swing_vars):
-    for date in list_of_dates:
-        dates.append(date.date)
-        for i in range(num_of_health_vars):
-            try:
-                health_vars[i].append(float(date.health_data.get(health_var_names[i])))
-            except AttributeError:  # Data value does not exist
-                health_vars[i].append(0.0)
-        for i in range(num_of_swing_vars):
-            if swing_var_names[i] == "Average Bat Speed":
-                swing_vars[i].append(date.avgBatSpeed())
-            elif swing_var_names[i] == "Maximum Bat Speed":
-                swing_vars[i].append(date.maxBatSpeed())
-
-
 def main(list_of_dates):
-    num_of_health_vars = int(input("How many health metrics would you like to graph? "))  # Must be ≤ 5
-    while num_of_health_vars > 5:
-        print("The maximum number of health metrics is 5!")
-        num_of_health_vars = int(input("How many health metrics would you like to graph? "))
+    num_of_health_vars = input_health_var_num()
     input_health_metrics(num_of_health_vars)
 
-    num_of_swing_vars = int(input("How many swing metrics would you like to graph? "))
-    while num_of_swing_vars > 5:
-        print("The maximum number of swing metrics is 5!")
-        num_of_swing_vars = int(input("How many swing metrics would you like to graph? "))
+    num_of_swing_vars = input_swing_var_num()
     input_swing_metrics(num_of_swing_vars)
 
     load_vars(list_of_dates, num_of_health_vars, num_of_swing_vars)
