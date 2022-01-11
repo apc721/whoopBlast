@@ -13,10 +13,10 @@ class Date:
         self.health_data = None
 
         """Methods called by default"""
-        self.loadSwings()  # loads all swings of same date
-        self.loadHealthData()  # loads health data of same date
+        self.load_swings()  # loads all swings of same date
+        self.load_health_data()  # loads health data of same date
 
-    def loadSwings(self):
+    def load_swings(self):
         """Reads SWING_PATH (csv file) and appends each swing to a list of all swings"""
         with open(SWING_PATH, mode='r', encoding='utf-8-sig') as swingFile:  # open Blast file
             swings = csv.DictReader(swingFile)  # read csv and store values as dict
@@ -25,7 +25,7 @@ class Date:
                         "%Y-%m-%d"):
                     self.swings.append(swing)  # append swing if date equals date on Blast file
 
-    def loadHealthData(self):
+    def load_health_data(self):
         """Reads WHOOP_PATH (csv file) and assigns data to self.health_data"""
         with open(WHOOP_PATH, mode='r', encoding='utf-8-sig') as healthFile:  # open Whoop file
             health_data = csv.DictReader(healthFile)  # read csv and store values as dict

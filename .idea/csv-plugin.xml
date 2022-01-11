@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="$USER_HOME$/Downloads/2022-01-11_Habit_Dash_Integrations_0b85064fda056bcd32ec790e6a5a3789/2022-01-11 Habit Dash - Integrations (whoop).csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/Metrics - Aidan Carey - 2021-07-01 - 2021-07-01 - 1641941870.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/Swing data.csv">
           <value>
             <Attribute>

@@ -7,19 +7,14 @@ from swings import Swings
 
 class Plot:
     """This class is a plot"""
-    def __init__(self, list_of_dates):
+    def __init__(self):
         self.dates = []
-
-        self.list_of_dates = list_of_dates
         self.health = Health()
-        self.num_of_health_vars = self.health.input_num_of_vars()
-
         self.swings = Swings()
-        self.num_of_swing_vars = self.swings.input_num_of_vars()
 
-    def load_vars(self):
+    def load_vars(self, list_of_dates):
         """Appends each date and calls load_vars helpers for health and swings"""
-        for date in self.list_of_dates:
+        for date in list_of_dates:
             self.dates.append(date.date)  # append date
             self.health.load_vars(date)  # call helper
             self.swings.load_vars(date)  # call helper
@@ -66,10 +61,6 @@ class Plot:
             s5, = twin1.plot(x, self.swings.vars[4], "g-", label=self.swings.names[4])
             lines_plotted.append(s5)
 
-        # y-axes ranges
-        ax.set_ylim(0, 100)
-        twin1.set_ylim(60, 80)
-
         # Find ways to generate labels based on data chosen by user
         # i.e. Health data on left (ax, ax2, ax3, etc.), and swing data on right (twin1, twin2, etc.)
 
@@ -81,3 +72,10 @@ class Plot:
         plt.legend(handles=lines_plotted)  # legend key
 
         plt.show()  # show plot
+
+    def generate_compare_graph(self):
+        plt.scatter(self.health.vars[0], self.swings.vars[0])
+        plt.xlabel(self.health.names[0])
+        plt.ylabel(self.swings.names[0])
+        plt.title(self.health.names[0] + " and " + self.swings.names[0])
+        plt.show()
