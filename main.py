@@ -20,11 +20,10 @@ if choose_mode() == 'time':
     my_plot.health.input_health_metrics(my_plot.health.input_num_of_vars())  # Helper functions
     my_plot.swings.input_swing_metrics(my_plot.swings.input_num_of_vars())
     my_plot.load_vars(list_of_dates)
-    my_plot.generate_graph(len(my_plot.health.names), len(my_plot.swings.names))  # Generate graph
+    my_plot.generate_time_graph(len(my_plot.health.names), len(my_plot.swings.names))  # Generate graph
 else:
     my_plot = plot.Plot()
     my_plot.health.input_health_metrics(1)  # Helper functions
     my_plot.swings.input_swing_metrics(1)
     my_plot.load_vars(list_of_dates)
-    # build new method to generate compare graph
     my_plot.generate_compare_graph()  # try to unify with generate_graph

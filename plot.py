@@ -19,7 +19,7 @@ class Plot:
             self.health.load_vars(date)  # call helper
             self.swings.load_vars(date)  # call helper
 
-    def generate_graph(self, num_of_health_vars, num_of_swing_vars):
+    def generate_time_graph(self, num_of_health_vars, num_of_swing_vars):
         """Generates, plots, and shows graph"""
         fig, ax = plt.subplots()
         # fig.subplots_adjust(right=0.75)X
